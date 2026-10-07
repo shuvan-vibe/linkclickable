@@ -2,8 +2,8 @@
   if (window.__clickLinkInjected) return;
   window.__clickLinkInjected = true; // Prevents double injection, isolated world prevents detection
 
-  // Simple URL regex matching common url formats
-  const URL_REGEX = /https?:\/\/[^\s<>"'`,;!?\[\](){}]+/g;
+  // Robust URL regex that allows query params (?) but ignores trailing punctuation
+  const URL_REGEX = /https?:\/\/[^\s<>"']*[^\s<>"'.,;:!?()\[\]{}]/g;
 
   function isInsideExcludedElement(node) {
     let current = node;
